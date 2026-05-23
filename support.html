@@ -3,28 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="めぐたびに関するお問い合わせ、不具合報告の窓口です。">
   <title>サポート | めぐたび</title>
+  <link rel="icon" href="./assets/megutabi_icon.png">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <h1>サポート</h1>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="めぐたび トップ">
+        <span class="brand-mark"><img src="./assets/megutabi_icon.png" alt=""></span>
+        <span>
+          <span class="brand-name">めぐたび</span>
+          <span class="brand-sub">MEGUTABI</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="サイト内">
+        <a href="./privacy.html">プライバシー</a>
+        <a href="./support.html" aria-current="page">サポート</a>
+        <a href="./terms.html">利用規約</a>
+      </nav>
+    </header>
 
-  <p>めぐたびに関するお問い合わせ、不具合報告は以下までご連絡ください。</p>
+    <main class="content">
+      <div class="page-title">
+        <p class="eyebrow">SUPPORT</p>
+        <h1>サポート</h1>
+        <p>めぐたびに関するお問い合わせ、不具合報告は以下までご連絡ください。</p>
+      </div>
 
-  <p>
-    メール:
-    <a href="mailto:support@example.com">support@example.com</a>
-  </p>
+      <div class="contact-panel">
+        <small>CONTACT</small>
+        <a href="mailto:support@example.com">support@example.com</a>
+      </div>
 
-  <p>お問い合わせの際は、以下の情報を添えていただけると助かります。</p>
+      <section class="content-section" aria-labelledby="support-info">
+        <h2 id="support-info">お問い合わせ時に添えていただきたい情報</h2>
+        <p>状況確認をスムーズにするため、可能な範囲で以下の情報をお知らせください。</p>
+        <ul class="support-list">
+          <li>端末名</li>
+          <li>OSバージョン</li>
+          <li>アプリバージョン</li>
+          <li>発生した画面</li>
+          <li>再現手順</li>
+        </ul>
+      </section>
 
-  <ul>
-    <li>端末名</li>
-    <li>OSバージョン</li>
-    <li>アプリバージョン</li>
-    <li>発生した画面</li>
-    <li>再現手順</li>
-  </ul>
+      <a class="back-link" href="./index.html">トップへ戻る</a>
+    </main>
 
-  <p><a href="./index.html">トップへ戻る</a></p>
+    <footer class="site-footer">
+      <span>&copy; 2026 めぐたび</span>
+      <div class="footer-links">
+        <a href="./privacy.html">プライバシー</a>
+        <a href="./terms.html">利用規約</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
