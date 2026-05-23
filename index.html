@@ -3,16 +3,87 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="めぐたびは、旅先で訪れたい場所を見つけ、めぐった記録を残すためのアプリです。">
   <title>めぐたび</title>
+  <link rel="icon" href="./assets/megutabi_icon.png">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <h1>めぐたび</h1>
-  <p>旅先に、もうひとつ行く理由を。</p>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="めぐたび トップ">
+        <span class="brand-mark"><img src="./assets/megutabi_icon.png" alt=""></span>
+        <span>
+          <span class="brand-name">めぐたび</span>
+          <span class="brand-sub">MEGUTABI</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="サイト内">
+        <a href="./privacy.html">プライバシー</a>
+        <a href="./support.html">サポート</a>
+        <a href="./terms.html">利用規約</a>
+      </nav>
+    </header>
 
-  <ul>
-    <li><a href="./privacy.html">プライバシーポリシー</a></li>
-    <li><a href="./support.html">サポート</a></li>
-    <li><a href="./terms.html">利用規約</a></li>
-  </ul>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">JOURNEY FINDER</p>
+          <h1 id="hero-title">
+            <span class="nowrap">旅先に、もうひとつ</span><br>
+            <span class="nowrap">行く理由を。</span>
+          </h1>
+          <p class="hero-lead">
+            めぐたびは、旅先で訪れたいスポットを発見し、訪問記録やテーマ達成状況を楽しむためのアプリです。
+            次の目的地を、いつもの旅程にそっと足していけます。
+          </p>
+          <div class="hero-actions" aria-label="主要リンク">
+            <a class="button primary" href="./support.html">サポートを見る</a>
+            <a class="button" href="./privacy.html">プライバシーポリシー</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="stamp"><img src="./assets/megutabi_icon.png" alt=""></div>
+          <div class="visual-caption">
+            <strong>めぐりたい場所が、<br>旅になる。</strong>
+            <span>VISIT · RECORD · DISCOVER</span>
+          </div>
+        </div>
+      </section>
+
+      <ul class="link-grid" aria-label="サイトメニュー">
+        <li class="link-card">
+          <a href="./privacy.html">
+            <small>PRIVACY</small>
+            <strong>プライバシーポリシー</strong>
+            <span>位置情報やアプリ内データの取り扱いについて。</span>
+          </a>
+        </li>
+        <li class="link-card">
+          <a href="./support.html">
+            <small>SUPPORT</small>
+            <strong>サポート</strong>
+            <span>お問い合わせや不具合報告に必要な情報をまとめています。</span>
+          </a>
+        </li>
+        <li class="link-card">
+          <a href="./terms.html">
+            <small>TERMS</small>
+            <strong>利用規約</strong>
+            <span>めぐたびをご利用いただく際の条件です。</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 めぐたび</span>
+      <div class="footer-links">
+        <a href="./privacy.html">プライバシー</a>
+        <a href="./support.html">サポート</a>
+        <a href="./terms.html">利用規約</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
