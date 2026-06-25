@@ -439,43 +439,54 @@ h1 {
 .store-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
   margin-top: 28px;
+}
+
+.store-badge-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .store-badge {
   display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 148px;
-  border: 1px solid rgba(31, 28, 23, 0.22);
-  border-radius: 8px;
-  padding: 10px 22px;
+  align-items: center;
+  gap: 14px;
+  border-radius: 10px;
+  padding: 12px 22px 12px 18px;
   background: var(--ink);
   color: var(--paper);
-  text-decoration: none;
-  transition: background 0.15s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(31, 28, 23, 0.22);
+  transition: opacity 0.15s, transform 0.15s;
 }
 
-.store-badge:hover {
-  background: var(--ink-soft);
-  color: var(--paper);
+.store-badge-link:hover .store-badge {
+  opacity: 0.85;
   transform: translateY(-2px);
 }
 
+.store-badge-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
 .store-badge-label {
-  display: block;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  opacity: 0.7;
+  letter-spacing: 0.14em;
+  opacity: 0.65;
+  line-height: 1;
 }
 
 .store-badge-name {
-  display: block;
-  font-size: 1.08rem;
+  font-size: 1.12rem;
   font-weight: 800;
   letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin-top: 3px;
 }
 
 .qr-block {
@@ -495,12 +506,6 @@ h1 {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-}
-
-@media (max-width: 760px) {
-  .qr-block {
-    display: none;
-  }
 }
 
 .features {
@@ -536,6 +541,10 @@ h1 {
 }
 
 @media (max-width: 760px) {
+  .qr-block {
+    display: none;
+  }
+
   .site-shell {
     padding: 18px 16px 32px;
   }
