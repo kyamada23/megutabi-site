@@ -436,28 +436,112 @@ h1 {
   gap: 12px;
 }
 
+.store-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.store-badge {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 148px;
+  border: 1px solid rgba(31, 28, 23, 0.22);
+  border-radius: 8px;
+  padding: 10px 22px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.store-badge:hover {
+  background: var(--ink-soft);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
+.store-badge-label {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+
+.store-badge-name {
+  display: block;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.qr-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.qr-block img {
+  display: block;
+  border-radius: 6px;
+}
+
+.qr-label {
+  color: var(--ink-faint);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 760px) {
+  .qr-block {
+    display: none;
+  }
+}
+
+.features {
+  border-top: 1px solid var(--edge);
+  padding: 32px 0 8px;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-list li {
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  padding: 20px;
+  background: rgba(251, 248, 241, 0.84);
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  box-shadow: 0 10px 28px rgba(31, 28, 23, 0.05);
+}
+
+.feature-list li strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
 @media (max-width: 760px) {
   .site-shell {
     padding: 18px 16px 32px;
   }
 
   .site-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 14px;
     padding-bottom: 18px;
-  }
-
-  .site-nav {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 4px;
-  }
-
-  .site-nav a {
-    min-height: 32px;
-    padding: 4px 8px;
-    font-size: 0.78rem;
   }
 
   .hero {
@@ -488,7 +572,7 @@ h1 {
     min-height: 280px;
   }
 
-  .link-grid {
+  .feature-list {
     grid-template-columns: 1fr;
   }
 
