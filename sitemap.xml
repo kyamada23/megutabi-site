@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/</loc>
-    <lastmod>2026-07-08</lastmod>
+    <lastmod>2026-07-31</lastmod>
   </url>
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/themes/</loc>
@@ -26,6 +26,10 @@
   </url>
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/themes/nihon-sanmeien.html</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://kyamada23.github.io/megutabi-site/themes/kumano-sanzan.html</loc>
     <lastmod>2026-07-31</lastmod>
   </url>
   <url>
