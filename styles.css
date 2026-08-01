@@ -128,17 +128,23 @@ a:hover {
   gap: 8px;
 }
 
-.site-nav a {
+/* ピル型リンクの共通見た目。個別の border / padding / font-size は各セレクタで上書きする。 */
+.site-nav a,
+.genre-nav a,
+.toc-nav a {
   display: inline-flex;
-  min-height: 36px;
   align-items: center;
-  border: 1px solid transparent;
   border-radius: 999px;
-  padding: 5px 14px;
   color: var(--ink-soft);
-  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
+}
+
+.site-nav a {
+  min-height: 36px;
+  border: 1px solid transparent;
+  padding: 5px 14px;
+  font-size: 0.9rem;
 }
 
 .site-nav a[aria-current="page"],
@@ -146,6 +152,18 @@ a:hover {
   border-color: var(--edge);
   background: rgba(251, 248, 241, 0.74);
   color: var(--vermilion-deep);
+}
+
+.site-nav a.nav-cta,
+.site-nav a.nav-cta[aria-current="page"] {
+  border-color: transparent;
+  background: var(--vermilion-deep);
+  color: var(--paper);
+}
+
+.site-nav a.nav-cta:hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .hero {
@@ -359,11 +377,13 @@ h1 {
   padding: 28px 0;
 }
 
-.content-section h2 {
+.content-section h2,
+.theme-genre h2 {
   margin: 0 0 14px;
   color: var(--indigo);
   font-size: 1.32rem;
   line-height: 1.45;
+  scroll-margin-top: 16px;
 }
 
 .content-section p {
@@ -610,6 +630,19 @@ h1 {
   box-shadow: var(--shadow);
 }
 
+.cta-panel--art {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  align-items: center;
+  gap: 20px;
+}
+
+.cta-panel--art img {
+  width: 96px;
+  height: auto;
+  justify-self: end;
+}
+
 .cta-panel h2 {
   margin: 0 0 12px;
   color: var(--vermilion-deep);
@@ -708,11 +741,72 @@ h1 {
   font-size: 0.9rem;
 }
 
+.page-title-with-art {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.page-title-with-art img {
+  width: 128px;
+  height: auto;
+}
+
+.genre-nav,
+.toc-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.genre-nav a,
+.toc-nav a {
+  gap: 6px;
+  border: 1px solid var(--edge-strong);
+  padding: 6px 14px;
+  font-size: 0.86rem;
+}
+
+.genre-nav a:hover,
+.toc-nav a:hover {
+  border-color: rgba(185, 74, 59, 0.34);
+  color: var(--vermilion-deep);
+}
+
+.genre-nav a span {
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.theme-genre {
+  margin: 0 0 40px;
+  border-top: 1px solid var(--edge);
+  padding: 28px 0 0;
+}
+
+.theme-genre h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.genre-count {
+  color: var(--ink-faint);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 14px;
-  margin: 4px 0 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -741,7 +835,7 @@ h1 {
   transform: translateY(-2px);
 }
 
-.theme-card-tag {
+.theme-card-count {
   border: 1px solid var(--edge-strong);
   border-radius: 999px;
   padding: 2px 12px;
@@ -759,39 +853,14 @@ h1 {
 }
 
 .theme-card-desc {
+  display: -webkit-box;
   margin-top: 10px;
+  overflow: hidden;
   color: var(--ink-mute);
   font-size: 0.9rem;
   line-height: 1.7;
-}
-
-.theme-card-more {
-  margin-top: 16px;
-  color: var(--indigo);
-  font-size: 0.86rem;
-  font-weight: 800;
-}
-
-.theme-card-more::after {
-  content: " →";
-}
-
-.theme-card > a:hover .theme-card-more {
-  color: var(--vermilion-deep);
-}
-
-.theme-card--soon {
-  flex-direction: column;
-  align-items: flex-start;
-  border: 1px dashed var(--edge-strong);
-  border-radius: 8px;
-  padding: 22px;
-  background: transparent;
-  color: var(--ink-mute);
-}
-
-.theme-card--soon .theme-card-tag {
-  color: var(--ink-mute);
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 @media (max-width: 760px) {
@@ -804,7 +873,32 @@ h1 {
   }
 
   .site-header {
+    flex-wrap: wrap;
     padding-bottom: 18px;
+  }
+
+  .site-nav a {
+    min-height: 32px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+  }
+
+  .page-title-with-art {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .page-title-with-art img {
+    width: 88px;
+  }
+
+  .cta-panel--art {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-panel--art img {
+    justify-self: start;
+    width: 72px;
   }
 
   .hero {
