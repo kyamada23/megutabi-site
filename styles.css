@@ -212,52 +212,50 @@ h1 {
   font-size: 1.05rem;
 }
 
+/* ヒーローのアプリ画面パネル。藍地に青海波（和文様）と朱の日輪を敷き、
+   実際のアプリ画面（site/assets/screens/、scripts/build_site_screens.py で
+   生成）を重ねる。風景の描写はアプリ内の Plate に任せ、ここは無地の和文様に
+   留める。 */
 .hero-visual {
   position: relative;
   width: 100%;
   min-width: 0;
-  min-height: 360px;
+  min-height: 470px;
   overflow: hidden;
   border: 1px solid var(--edge);
-  border-radius: 8px;
+  border-radius: 12px;
   background:
-    linear-gradient(180deg, #efe5cd 0%, #bdcfd5 42%, #5d8ca0 75%, #2a4f63 100%);
+    radial-gradient(58% 46% at 84% 12%, rgba(185, 74, 59, 0.5), transparent 62%),
+    linear-gradient(160deg, #2f5175 0%, #1b3149 58%, #15263a 100%);
   box-shadow: var(--shadow);
 }
 
-.hero-visual::before,
-.hero-visual::after {
+/* 青海波。半径の異なる同心円を 2 行分ずらして重ね、波が連なる文様にする。 */
+.hero-scene {
   position: absolute;
-  right: -6%;
-  left: -4%;
-  content: "";
-  clip-path: polygon(0 58%, 17% 40%, 33% 53%, 51% 28%, 70% 51%, 86% 34%, 100% 48%, 100% 100%, 0 100%);
-}
-
-.hero-visual::before {
-  bottom: 18%;
-  height: 60%;
-  background: #5b7693;
-  opacity: 0.84;
-}
-
-.hero-visual::after {
-  bottom: -1px;
-  height: 48%;
-  background: #2f4763;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(circle at 50% 100%, transparent 22%, rgba(245, 240, 230, 0.34) 23%, rgba(245, 240, 230, 0.34) 25%, transparent 26%, transparent 42%, rgba(245, 240, 230, 0.34) 43%, rgba(245, 240, 230, 0.34) 45%, transparent 46%, transparent 62%, rgba(245, 240, 230, 0.34) 63%, rgba(245, 240, 230, 0.34) 65%, transparent 66%),
+    radial-gradient(circle at 50% 100%, transparent 22%, rgba(245, 240, 230, 0.34) 23%, rgba(245, 240, 230, 0.34) 25%, transparent 26%, transparent 42%, rgba(245, 240, 230, 0.34) 43%, rgba(245, 240, 230, 0.34) 45%, transparent 46%, transparent 62%, rgba(245, 240, 230, 0.34) 63%, rgba(245, 240, 230, 0.34) 65%, transparent 66%);
+  background-position: 0 0, 36px 36px;
+  background-size: 72px 72px;
+  /* Safari 15.3 以前 / Chrome 119 以前は unprefixed の mask-image を解さない。 */
+  -webkit-mask-image: linear-gradient(190deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 46%, transparent 78%);
+  mask-image: linear-gradient(190deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 46%, transparent 78%);
 }
 
 .stamp {
   position: absolute;
-  top: 28px;
-  right: 28px;
-  z-index: 1;
-  width: 118px;
-  height: 118px;
+  top: 24px;
+  right: 24px;
+  z-index: 3;
+  width: 92px;
+  height: 92px;
   overflow: hidden;
   border-radius: 50%;
-  background: rgba(251, 248, 241, 0.8);
-  box-shadow: 0 16px 30px rgba(31, 28, 23, 0.14);
+  background: rgba(251, 248, 241, 0.86);
+  box-shadow: 0 16px 30px rgba(31, 28, 23, 0.22);
 }
 
 .stamp img {
@@ -268,18 +266,52 @@ h1 {
   mix-blend-mode: multiply;
 }
 
+/* 端末フレーム。ヒーローとスクリーンショット一覧で共有する。 */
+.phone {
+  border: 6px solid #16130f;
+  border-radius: 26px;
+  background: #16130f;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 24px 50px rgba(20, 26, 38, 0.4);
+}
+
+.phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.hero-visual .phone {
+  position: absolute;
+  z-index: 2;
+}
+
+.hero-visual .phone--front {
+  bottom: -7%;
+  left: 22%;
+  width: 44%;
+  transform: rotate(-3deg);
+}
+
+.hero-visual .phone--back {
+  right: 2%;
+  bottom: 5%;
+  z-index: 1;
+  width: 34%;
+  transform: rotate(6deg);
+}
+
 .visual-caption {
   position: absolute;
-  right: 24px;
-  bottom: 22px;
-  left: 24px;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: end;
+  top: 26px;
+  left: 26px;
+  z-index: 3;
+  margin: 0;
+  max-width: 58%;
   color: var(--paper);
-  text-shadow: 0 2px 14px rgba(31, 28, 23, 0.34);
+  text-shadow: 0 2px 16px rgba(20, 26, 38, 0.5);
 }
 
 .visual-caption strong {
@@ -290,8 +322,10 @@ h1 {
 }
 
 .visual-caption span {
+  display: block;
+  margin-top: 6px;
   color: rgba(245, 240, 230, 0.78);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.14em;
 }
@@ -558,6 +592,69 @@ h1 {
   margin-bottom: 6px;
   color: var(--ink);
   font-size: 1.05rem;
+}
+
+/* アプリの画面（スクリーンショット一覧） */
+.screens {
+  border-top: 1px solid var(--edge);
+  margin-top: 40px;
+  padding: 32px 0 8px;
+}
+
+.screens h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+.screens-lead {
+  max-width: 40rem;
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+}
+
+.screen-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 20px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.screen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.screen-card .phone {
+  width: min(100%, 250px);
+  border-width: 5px;
+  border-radius: 22px;
+  box-shadow: 0 16px 34px rgba(31, 28, 23, 0.16);
+}
+
+.screen-card .phone img {
+  border-radius: 17px;
+}
+
+.screen-card strong {
+  align-self: stretch;
+  margin-top: 18px;
+  color: var(--ink);
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.screen-card span {
+  align-self: stretch;
+  margin-top: 6px;
+  color: var(--ink-mute);
+  font-size: 0.86rem;
+  line-height: 1.7;
 }
 
 /* テーマ紹介ページ */
@@ -920,13 +1017,25 @@ h1 {
   }
 
   .stamp {
-    right: 18px;
-    width: 96px;
-    height: 96px;
+    top: 16px;
+    right: 16px;
+    width: 68px;
+    height: 68px;
   }
 
   .hero-visual {
-    min-height: 280px;
+    min-height: 400px;
+    margin-top: 24px;
+  }
+
+  .hero-visual .phone--front {
+    left: 8%;
+    width: 48%;
+  }
+
+  .hero-visual .phone--back {
+    right: 4%;
+    width: 40%;
   }
 
   .feature-list {
@@ -934,7 +1043,44 @@ h1 {
   }
 
   .visual-caption {
-    flex-direction: column;
-    align-items: flex-start;
+    top: 18px;
+    left: 18px;
+    max-width: 62%;
+  }
+
+  .visual-caption strong {
+    font-size: 1.05rem;
+  }
+
+  .visual-caption span {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  /* 縦長の端末画面は 1 列に積むと縦に伸びすぎるため、横スクロールで見せる。 */
+  .screen-list {
+    grid-auto-columns: 58%;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 16px;
+    margin-right: -16px;
+    margin-left: -16px;
+    padding: 0 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .screen-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .screen-card {
+    scroll-snap-align: center;
+  }
+
+  .screen-card .phone {
+    width: 100%;
   }
 }
