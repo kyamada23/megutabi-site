@@ -490,19 +490,37 @@ h1 {
   gap: 12px;
 }
 
+/* 価格と登録の不安はバッジを見せる前に消す。従来は「無料・アカウント不要」が
+   特徴カードの 6 枚目にあり、ファーストビューでは読めなかった。 */
+.hero-reassure {
+  margin: 22px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* ストアバッジ。バッジ 2 枚を必ず 1 行に収め、QR はその下に別行で置く。
+   バッジと QR を横並びにすると必要幅が hero-copy 列（約 500px）を超え、
+   1280px のノート PC でも折り返して App Store 側がファーストビューから
+   落ちるため、行を分けている。 */
 .store-badges {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  row-gap: 20px;
-  column-gap: 32px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
   margin-top: 28px;
 }
 
-.store-badge-group {
+.store-badge-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
+}
+
+.qr-row {
+  display: flex;
+  gap: 28px;
 }
 
 .store-badge-link {
@@ -540,6 +558,68 @@ h1 {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.06em;
+}
+
+/* 記事中盤の簡易 CTA。本文を分断しすぎないよう、パネルではなく 1 行の帯にする。
+   テーマ記事はページ全長の 5 画面分下にしか入手導線がなく、一覧表を読み終えた
+   直後（最も納得している瞬間）に受け皿がなかったため置いている。 */
+.cta-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 22px 0 0;
+  border: 1px solid rgba(185, 74, 59, 0.28);
+  border-radius: 8px;
+  padding: 14px 18px;
+  background: rgba(251, 248, 241, 0.9);
+}
+
+.cta-inline-text {
+  flex: 1 1 15rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.cta-inline-text strong {
+  color: var(--ink);
+}
+
+.cta-inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cta-inline-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  border: 1px solid rgba(31, 28, 23, 0.22);
+  border-radius: 8px;
+  padding: 6px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.cta-inline-links a:hover {
+  background: var(--ink-soft);
+  color: var(--paper);
+}
+
+/* LP 下部の入手パネル。ストアバッジをそのまま置く。 */
+.cta-panel .store-badges {
+  margin-top: 20px;
+}
+
+/* モバイル追従 CTA。760px 以下でのみ表示する（下の media query）。 */
+.sticky-cta {
+  display: none;
 }
 
 .features {
@@ -935,12 +1015,67 @@ h1 {
 }
 
 @media (max-width: 760px) {
-  .qr-block {
+  .qr-row {
     display: none;
   }
 
   .site-shell {
     padding: 18px 16px 32px;
+  }
+
+  /* 追従 CTA のぶんだけ本文の下に余白を確保し、フッターが隠れないようにする。
+     バーの高さは中のボタン（min-height 44px + padding）で決まり、文字サイズを
+     上げると一緒に伸びる。px 固定で確保すると、ブラウザの文字サイズ拡大や
+     iOS の大きな文字設定でバーが確保枠を超え、フッターのプライバシー /
+     サポート / 利用規約リンクを覆ってタップできなくなる。rem 基準にして
+     文字サイズに追従させる（既定 16px で 84px 相当）。
+     :has() を使わないのは、この CSS が Safari 15.3 以前も対象にしているため
+     （上の mask-image の注記と同じ理由）。バーを置くページの body に
+     has-sticky-cta を付けて制御する。 */
+  body.has-sticky-cta .site-shell {
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .sticky-cta {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--edge-strong);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(251, 248, 241, 0.96);
+    box-shadow: 0 -8px 24px rgba(31, 28, 23, 0.12);
+  }
+
+  .sticky-cta-label {
+    flex: 0 0 auto;
+    max-width: 5.2em;
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .sticky-cta a {
+    display: flex;
+    flex: 1 1 0;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 6px 8px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .sticky-cta a.is-primary {
+    background: var(--vermilion-deep);
   }
 
   .site-header {

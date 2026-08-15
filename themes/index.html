@@ -15,6 +15,8 @@
   <meta property="og:image:width" content="2400">
   <meta property="og:image:height" content="1260">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- iOS Safari の Smart App Banner。インストール済みなら「開く」に変わる。 -->
+  <meta name="apple-itunes-app" content="app-id=6800500048, app-argument=https://kyamada23.github.io/megutabi-site/themes/">
   <link rel="icon" href="../assets/megutabi_icon.png">
   <link rel="stylesheet" href="../styles.css">
   <script defer src="../analytics.js"></script>
@@ -121,7 +123,7 @@
   </script>
   <!-- THEMES_JSONLD_END -->
 </head>
-<body>
+<body class="has-sticky-cta">
   <div class="site-shell">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="めぐたび トップ">
@@ -133,7 +135,7 @@
       </a>
       <nav class="site-nav" aria-label="サイト内">
         <a href="./" aria-current="page">テーマ一覧</a>
-        <a class="nav-cta" href="../index.html#store-badges">アプリを入手</a>
+        <a class="nav-cta" href="#get-app">アプリを入手</a>
       </nav>
     </header>
 
@@ -332,7 +334,7 @@
       </section>
       <!-- THEME_GRID_END -->
 
-      <section class="cta-panel cta-panel--art" aria-labelledby="cta">
+      <section class="cta-panel cta-panel--art" id="get-app" aria-labelledby="cta">
         <div>
           <h2 id="cta">気になるテーマを、旅の記録に。</h2>
           <p>めぐたびは、テーマ別に全国のスポットを発見・記録・収集できる無料アプリ。気になるテーマを見つけたら、訪れた場所を記録して踏破を目指せます。</p>
@@ -356,5 +358,10 @@
       </div>
     </footer>
   </div>
+  <nav class="sticky-cta" aria-label="アプリを入手">
+    <span class="sticky-cta-label">無料<br>登録不要</span>
+    <a class="is-primary" href="https://apps.apple.com/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+    <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+  </nav>
 </body>
 </html>

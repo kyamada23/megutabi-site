@@ -15,6 +15,8 @@
   <meta property="og:image:width" content="2400">
   <meta property="og:image:height" content="1260">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- iOS Safari の Smart App Banner。インストール済みなら「開く」に変わる。 -->
+  <meta name="apple-itunes-app" content="app-id=6800500048, app-argument=https://kyamada23.github.io/megutabi-site/themes/nihon-rokkoyo.html">
   <link rel="icon" href="../assets/megutabi_icon.png">
   <link rel="stylesheet" href="../styles.css">
   <script defer src="../analytics.js"></script>
@@ -85,7 +87,7 @@
   }
   </script>
 </head>
-<body>
+<body class="has-sticky-cta">
   <div class="site-shell">
     <header class="site-header">
       <a class="brand" href="../index.html" aria-label="めぐたび トップ">
@@ -97,7 +99,7 @@
       </a>
       <nav class="site-nav" aria-label="サイト内">
         <a href="./">テーマ一覧</a>
-        <a class="nav-cta" href="../index.html#store-badges">アプリを入手</a>
+        <a class="nav-cta" href="#get-app">アプリを入手</a>
       </nav>
     </header>
 
@@ -171,6 +173,13 @@
             </tbody>
           </table>
         </div>
+        <div class="cta-inline" id="get-app">
+          <span class="cta-inline-text"><strong>訪れた産地を記録</strong>して、日本六古窯の踏破を目指せます。無料・登録不要。</span>
+          <span class="cta-inline-links">
+            <a href="https://apps.apple.com/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+          </span>
+        </div>
       </section>
 
       <section class="content-section" aria-labelledby="origin">
@@ -227,6 +236,12 @@
         <a href="../terms.html">利用規約</a>
       </div>
     </footer>
+  </div>
+
+  <nav class="sticky-cta" aria-label="アプリを入手">
+    <span class="sticky-cta-label">無料<br>登録不要</span>
+    <a class="is-primary" href="https://apps.apple.com/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+    <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
   </div>
 </body>
 </html>

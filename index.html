@@ -16,6 +16,8 @@
   <meta property="og:image:width" content="2400">
   <meta property="og:image:height" content="1260">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- iOS Safari の Smart App Banner。インストール済みなら「開く」に変わる。 -->
+  <meta name="apple-itunes-app" content="app-id=6800500048, app-argument=https://kyamada23.github.io/megutabi-site/">
   <link rel="icon" href="./assets/megutabi_icon.png">
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./analytics.js"></script>
@@ -49,7 +51,7 @@
   }
   </script>
 </head>
-<body>
+<body class="has-sticky-cta">
   <div class="site-shell">
     <header class="site-header">
       <a class="brand" href="./index.html" aria-label="めぐたび トップ">
@@ -78,26 +80,27 @@
             はじめに行ったことのある名所を選んでいくと、すでに踏破しているテーマがあるかもしれません。
           </p>
           <p class="hero-lead">
-            テーマの最後の一か所にしるしをつけると、達成画像が一枚。
+            テーマの最後の一か所を記録すると、達成画像が一枚。
             名所を集めるほどテーマが埋まり、踏破するほど旅の図鑑に達成画像が増えていきます。
           </p>
+          <p class="hero-reassure">すべて無料・アカウント登録不要。iOS / Android 対応。</p>
           <div class="store-badges" id="store-badges">
-            <div class="store-badge-group">
-              <a class="store-badge-link" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">
-                <img class="store-badge-img" src="./assets/google-play-badge.png" width="145" height="56" alt="Google Play で手に入れよう">
-              </a>
-              <div class="qr-block">
-                <img src="./assets/qr-google-play.svg" width="96" height="96" alt="Google Play ダウンロード QRコード">
-                <span class="qr-label">スマホで読み取る</span>
-              </div>
-            </div>
-            <div class="store-badge-group">
+            <div class="store-badge-row">
               <a class="store-badge-link" href="https://apps.apple.com/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">
                 <img class="store-badge-img" src="./assets/app-store-badge.svg" width="152" height="56" alt="Download on the App Store">
               </a>
+              <a class="store-badge-link" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">
+                <img class="store-badge-img" src="./assets/google-play-badge.png" width="145" height="56" alt="Google Play で手に入れよう">
+              </a>
+            </div>
+            <div class="qr-row">
               <div class="qr-block">
                 <img src="./assets/qr-app-store.svg" width="96" height="96" alt="App Store ダウンロード QRコード">
-                <span class="qr-label">スマホで読み取る</span>
+                <span class="qr-label">App Store</span>
+              </div>
+              <div class="qr-block">
+                <img src="./assets/qr-google-play.svg" width="96" height="96" alt="Google Play ダウンロード QRコード">
+                <span class="qr-label">Google Play</span>
               </div>
             </div>
           </div>
@@ -126,7 +129,7 @@
           </li>
           <li>
             <strong>訪問記録</strong>
-            行った場所にしるしをつけて、コレクション感覚で記録。テーマの達成状況をひと目で確認できます。
+            行った場所を記録して、コレクション感覚で集めていけます。テーマの達成状況はひと目で確認できます。
           </li>
           <li>
             <strong>達成画像と旅の図鑑</strong>
@@ -155,7 +158,7 @@
         <ul class="screen-list">
           <li class="screen-card">
             <div class="phone">
-              <img src="./assets/screens/01.webp" width="560" height="1022" loading="lazy" alt="これまでの旅の画面。20件のスポット、20個のテーマにしるしがつき、うち3テーマを踏破したことと、踏破したテーマの一覧が表示されている">
+              <img src="./assets/screens/01.webp" width="560" height="1022" loading="lazy" alt="これまでの旅の画面。20件のスポットと20個のテーマが記録され、うち3テーマを踏破したことと、踏破したテーマの一覧が表示されている">
             </div>
             <strong>過去の旅が、そのまま記録になる</strong>
             <span>行ったことのある名所を選んでいくと、すでに踏破しているテーマが見つかります。</span>
@@ -186,7 +189,7 @@
               <img src="./assets/screens/02.webp" width="560" height="1022" loading="lazy" alt="達成画像ビューアの画面。日本三景を踏破した記念の達成画像と、共有・とじるのボタン">
             </div>
             <strong>踏破の記念に、一枚の絵が届く</strong>
-            <span>テーマの最後の一か所にしるしをつけると、達成画像が旅の図鑑に加わります。</span>
+            <span>テーマの最後の一か所を記録すると、達成画像が旅の図鑑に加わります。</span>
           </li>
           <li class="screen-card">
             <div class="phone">
@@ -218,6 +221,21 @@
           <span>現存12天守ほか、テーマごとの一覧と巡り方を紹介しています。</span>
         </p>
       </section>
+
+      <section class="cta-panel" id="get-app" aria-labelledby="cta-bottom">
+        <h2 id="cta-bottom">行ったことのある名所を、選ぶところから。</h2>
+        <p>すべての機能を無料で使えます。アカウント登録・ログインは不要です。まずは行ったことのある名所を選んで、いくつのテーマが埋まっているか確かめてみてください。</p>
+        <div class="store-badges">
+          <div class="store-badge-row">
+            <a class="store-badge-link" href="https://apps.apple.com/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">
+              <img class="store-badge-img" src="./assets/app-store-badge.svg" width="152" height="56" loading="lazy" alt="Download on the App Store">
+            </a>
+            <a class="store-badge-link" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">
+              <img class="store-badge-img" src="./assets/google-play-badge.png" width="145" height="56" loading="lazy" alt="Google Play で手に入れよう">
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -230,5 +248,10 @@
     </footer>
   </div>
 
+  <nav class="sticky-cta" aria-label="アプリを入手">
+    <span class="sticky-cta-label">無料<br>登録不要</span>
+    <a class="is-primary" href="https://apps.apple.com/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+    <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+  </nav>
 </body>
 </html>
