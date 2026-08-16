@@ -177,7 +177,7 @@ a:hover {
   display: grid;
   grid-template-columns: minmax(0, 1.04fr) minmax(280px, 0.96fr);
   gap: 28px;
-  align-items: stretch;
+  align-items: start;
   min-height: 440px;
   padding: 24px 0 44px;
 }
