@@ -1145,19 +1145,27 @@ h1 {
     height: 68px;
   }
 
+  /* 1 カラムになるとパネルが画面幅いっぱいまで広がる。端末画像は幅の % で
+     サイズが決まるのに対しパネルの高さは固定だったため、幅の広い端末
+     （タブレット幅・横向き）ほど端末画像が縦に伸びてキャプションを覆い、
+     「めぐりたい場所が、旅になる。」が読めなくなっていた。パネル自体の幅を
+     上限つきで抑え、端末画像との比率を一定に保つ。 */
   .hero-visual {
-    min-height: 400px;
+    max-width: 420px;
+    min-height: 420px;
     margin-top: 24px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .hero-visual .phone--front {
-    left: 8%;
-    width: 48%;
+    left: 9%;
+    width: 44%;
   }
 
   .hero-visual .phone--back {
-    right: 4%;
-    width: 40%;
+    right: 5%;
+    width: 34%;
   }
 
   .feature-list {
@@ -1167,7 +1175,7 @@ h1 {
   .visual-caption {
     top: 18px;
     left: 18px;
-    max-width: 62%;
+    max-width: calc(100% - 110px);
   }
 
   .visual-caption strong {
