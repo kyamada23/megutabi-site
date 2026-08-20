@@ -155,6 +155,7 @@
         <p class="screens-lead">
           はじめに過去の旅を記録するところから、テーマを踏破して達成画像が届くまで。実際の画面で紹介します。
         </p>
+        <p class="screens-hint">全 6 枚 ・ 横にスワイプ →</p>
         <ul class="screen-list">
           <li class="screen-card">
             <div class="phone">
@@ -199,6 +200,18 @@
             <span>スポット・テーマ・都道府県の進み具合を、いつでも見返せます。</span>
           </li>
         </ul>
+        <script>
+          // .screens-hint の枚数はここから算出する（PBI-86: ハードコードした
+          // 数字がカード追加・削除で実数とズレるのを防ぐ）。JS 無効時は
+          // 上の静的文言「全 6 枚」がそのまま残るフォールバックにする。
+          (function () {
+            var count = document.querySelectorAll('.screen-list .screen-card').length;
+            var hint = document.querySelector('.screens-hint');
+            if (hint && count) {
+              hint.textContent = '全 ' + count + ' 枚 ・ 横にスワイプ →';
+            }
+          })();
+        </script>
       </section>
 
       <section class="content-section" aria-labelledby="themes-title">

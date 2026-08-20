@@ -681,6 +681,12 @@ h1 {
   font-size: 0.96rem;
 }
 
+/* 760px 以下でのみ表示するスワイプ枚数ヒント（下の media query で display: block）。
+   デスクトップは 3 列グリッドで 6 枚とも見えているため不要。 */
+.screens-hint {
+  display: none;
+}
+
 .screen-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1198,5 +1204,81 @@ h1 {
 
   .screen-card .phone {
     width: 100%;
+  }
+
+  .screens-hint {
+    display: block;
+    margin: 14px 0 0;
+    color: var(--ink-mute);
+    font-size: 0.78rem;
+  }
+
+  /* テーマ記事の一覧テーブルをカード化する。table 構造は維持したまま
+     display: block で崩し、tbody tr 1 行を 1 枚のカードに見せる
+     （PBI-86: min-width 19rem が横スクロールの直接原因だったため解除）。 */
+  .table-scroll {
+    border: 0;
+  }
+
+  .theme-table,
+  .theme-table tbody,
+  .theme-table tr,
+  .theme-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* display: none にすると列見出し（所在地 / 見どころ）が支援技術からも
+     消える。display: block でテーブルロールが外れない環境（古い Safari 等）
+     でも読み上げられるよう、視覚的にのみ隠す。 */
+  .theme-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+
+  .theme-table tbody tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--edge);
+    border-radius: 8px;
+    background: rgba(251, 248, 241, 0.6);
+    padding: 12px 14px;
+  }
+
+  .theme-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .theme-table td {
+    padding: 0;
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  .theme-table td + td {
+    margin-top: 6px;
+  }
+
+  .theme-table td:first-child {
+    font-size: 1rem;
+    /* デスクトップ側の .theme-table td:first-child { white-space: nowrap }
+       は :first-child 分だけ詳細度が高く、上の .theme-table td { white-space:
+       normal } では打ち消せない。同じ詳細度で明示的に上書きする。 */
+    white-space: normal;
+  }
+
+  .theme-table td:nth-child(2) {
+    font-size: 0.82rem;
+    white-space: normal;
+  }
+
+  .theme-table td:last-child {
+    min-width: 0;
   }
 }
