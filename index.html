@@ -16,6 +16,19 @@
   <meta property="og:image:width" content="2400">
   <meta property="og:image:height" content="1260">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- SITE_IDENTITY_START -->
+  <meta name="twitter:site" content="@megutabi_app">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://kyamada23.github.io/megutabi-site/#publisher",
+    "name": "めぐたび",
+    "url": "https://kyamada23.github.io/megutabi-site/",
+    "sameAs": ["https://x.com/megutabi_app"]
+  }
+  </script>
+  <!-- SITE_IDENTITY_END -->
   <!-- iOS Safari の Smart App Banner。インストール済みなら「開く」に変わる。 -->
   <meta name="apple-itunes-app" content="app-id=6800500048, app-argument=https://kyamada23.github.io/megutabi-site/">
   <link rel="icon" href="./assets/favicon-32.png">
@@ -44,7 +57,8 @@
     "@type": "WebSite",
     "name": "めぐたび",
     "url": "https://kyamada23.github.io/megutabi-site/",
-    "inLanguage": "ja"
+    "inLanguage": "ja",
+    "publisher": { "@id": "https://kyamada23.github.io/megutabi-site/#publisher" }
   }
   </script>
   <script type="application/ld+json">
@@ -60,6 +74,7 @@
       "@type": "Person",
       "name": "Kyohei Yamada"
     },
+    "publisher": { "@id": "https://kyamada23.github.io/megutabi-site/#publisher" },
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -321,11 +336,14 @@
 
     <footer class="site-footer">
       <span>&copy; 2026 めぐたび</span>
+      <!-- SITE_FOOTER_START -->
       <div class="footer-links">
         <a href="./privacy.html">プライバシー</a>
         <a href="./support.html">サポート</a>
         <a href="./terms.html">利用規約</a>
+        <a href="https://x.com/megutabi_app" target="_blank" rel="me noopener">X（@megutabi_app）</a>
       </div>
+      <!-- SITE_FOOTER_END -->
     </footer>
   </div>
 

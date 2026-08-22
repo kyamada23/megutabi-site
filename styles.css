@@ -551,6 +551,20 @@ a.theme-chip:hover {
   font-size: 0.9rem;
 }
 
+.share-x {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 26px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.share-x::before {
+  content: "𝕏";
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -1254,6 +1268,7 @@ html.is-android .is-store-android {
     padding: 4px 2px;
   }
 
+  .share-x,
   .back-link {
     min-height: 44px;
   }
