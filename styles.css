@@ -404,6 +404,21 @@ h1 {
   font-size: 1.02rem;
 }
 
+/* テーマ一覧冒頭の収録範囲（PBI-95）。生成時算出（build_theme_pages.py の
+   render_themes_scope）なので、地の文のリード文とは別の控えめな体裁にして
+   数字だけの案内であることを示す。 */
+.page-title .theme-coverage {
+  display: inline-flex;
+  align-items: center;
+  margin: 10px 0 0;
+  border: 1px solid var(--edge-strong);
+  border-radius: 999px;
+  padding: 4px 14px;
+  color: var(--ink-mute);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .content {
   width: min(100%, 760px);
   padding-bottom: 48px;
@@ -441,6 +456,76 @@ h1 {
 .support-list li {
   margin: 6px 0;
   padding-left: 0.2em;
+}
+
+/* LP「収録テーマ（一部）」のチップ（PBI-95）。記事のあるテーマだけ枠付きの
+   <a> にし、記事の無い項目は枠の無い <span> のまま押せなく見せる
+   （期待と実物の整合 = 実物と期待のズレを無くす。以前は 25 件すべてが
+   「／」区切りの地の文リンクに見え、実際に押せるのは 6 件だけだった）。 */
+.theme-chip-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 18px 0 0;
+}
+
+.theme-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 10px;
+}
+
+.theme-chip-group-label {
+  flex: 0 0 auto;
+  min-width: 5.4em;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.theme-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* タップ標的 44px（PBI-95）。以前は地の文の <a> で高さ 16px しかなかった。 */
+.theme-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 0 16px;
+  font-size: 0.9rem;
+}
+
+a.theme-chip {
+  border: 1px solid var(--edge-strong);
+  color: var(--indigo);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a.theme-chip:hover {
+  border-color: rgba(185, 74, 59, 0.34);
+  color: var(--vermilion-deep);
+  background: rgba(251, 248, 241, 0.84);
+}
+
+/* 記事の無いテーマ。枠を持たせないことで「押せる／押せない」を見た目で
+   区別する（凡例テキストと合わせて読者が試し押しせずに済む）。 */
+.theme-chip--plain {
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.content-section .theme-chip-legend {
+  margin: 12px 0 0;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
 }
 
 .contact-panel {
@@ -599,25 +684,7 @@ h1 {
   gap: 8px;
 }
 
-.cta-inline-links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-  border: 1px solid rgba(31, 28, 23, 0.22);
-  border-radius: 8px;
-  padding: 6px 16px;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.88rem;
-  font-weight: 800;
-  text-decoration: none;
-  transition: background 0.15s;
-}
-
-.cta-inline-links a:hover {
-  background: var(--ink-soft);
-  color: var(--paper);
-}
+/* ボタン本体は .store-btn（PBI-95: 6 か所すべて共通の体裁）。 */
 
 /* 画像＋文章を横に並べるカード共通の骨格（列幅・順序は用途ごとに個別指定）。
    .cta-panel--art / .page-title-with-art / .app-peek で共有する。 */
@@ -655,11 +722,6 @@ h1 {
 
 .app-peek figcaption strong {
   color: var(--ink);
-}
-
-/* LP 下部の入手パネル。ストアバッジをそのまま置く。 */
-.cta-panel .store-badges {
-  margin-top: 20px;
 }
 
 /* モバイル追従 CTA。760px 以下でのみ表示する（下の media query）。 */
@@ -870,23 +932,54 @@ h1 {
   margin-top: 20px;
 }
 
-.cta-store {
+/* ストアボタン（PBI-95）。記事内インライン・記事末パネル・テーマ一覧下部・
+   LP 下部・追従バーの 5 か所すべてがこの 1 クラスを共有する体裁。
+   サイズ差は追従バー側だけ .sticky-cta .store-btn で上書きする（下記）。
+   LP ヒーローの公式ストアバッジだけは体裁を統一せず画像のまま残す
+   （バッジは改変できないため、並び順の入れ替えだけ is-store-* で効かせる）。 */
+.store-btn {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(31, 28, 23, 0.22);
+  justify-content: center;
+  border: 1px solid transparent;
   border-radius: 8px;
   padding: 12px 22px;
   background: var(--ink);
   color: var(--paper);
   font-weight: 800;
   text-decoration: none;
-  transition: background 0.15s, transform 0.15s;
+  transition: background 0.15s, transform 0.15s, filter 0.15s;
 }
 
-.cta-store:hover {
-  background: var(--ink-soft);
+.store-btn:hover {
   color: var(--paper);
+  filter: brightness(0.92);
   transform: translateY(-2px);
+}
+
+/* 強調（朱色）の既定は App Store。<head> の同期スクリプトが body 描画前に
+   documentElement へ is-ios / is-android を付ける（OS_CLASS_SCRIPT）ので、
+   PC・JS 無効時は常にこの既定のまま（現状の見た目を維持）。is-store-android
+   側は base の .store-btn がすでに var(--ink) を敷いているため無指定でよい
+   （コードレビュー指摘: 明示すると base と同値の no-op ルールになる）。 */
+.store-btn.is-store-ios {
+  background: var(--vermilion-deep);
+}
+
+html.is-android .store-btn.is-store-ios {
+  background: var(--ink);
+}
+
+html.is-android .store-btn.is-store-android {
+  background: var(--vermilion-deep);
+}
+
+/* 並び順。HTML のソース順は常に App Store → Google Play のまま変えない
+   （JS 無効時のフォールバック）。Android 判定時だけ Google Play 側の
+   flex order を前に出す。公式バッジ（.store-badge-link）にも同じ
+   is-store-android を付けているため、この 1 行が LP ヒーローにも効く。 */
+html.is-android .is-store-android {
+  order: -1;
 }
 
 .breadcrumb {
@@ -1105,35 +1198,64 @@ h1 {
     line-height: 1.35;
   }
 
-  .sticky-cta a {
-    display: flex;
+  /* サイズだけの上書き。色・並び順は .store-btn / is-store-* 側（共通）。 */
+  .sticky-cta .store-btn {
     flex: 1 1 0;
     min-height: 44px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
     padding: 6px 8px;
-    background: var(--ink);
-    color: var(--paper);
     font-size: 0.8rem;
-    font-weight: 800;
     text-align: center;
-    text-decoration: none;
   }
 
-  .sticky-cta a.is-primary {
-    background: var(--vermilion-deep);
+  /* コードレビュー指摘: 記事内インライン・記事末/LP下部/テーマ一覧下部の
+     パネルは .store-btn の既定サイズ（padding 12px 22px・1rem）のままだと
+     320px 幅で「App Store」「Google Play」が横並びに収まらず縦積みになり、
+     render_inline_cta が意図した「1 行の帯」が崩れる。追従バーと同じ考え方で
+     このコンテナ限定の縮小サイズを与える（320px 実測で 2 コンテナとも
+     1 行に収まることを確認済み）。 */
+  .cta-inline-links .store-btn,
+  .cta-actions .store-btn {
+    padding: 10px 10px;
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+
+  .cta-inline-links,
+  .cta-actions {
+    gap: 8px;
   }
 
   .site-header {
     flex-wrap: wrap;
-    padding-bottom: 18px;
+    /* PBI-95 でナビのピルを 44px に伸ばした分（+12px）、ここを 18→10px に
+       詰めて PBI-98 のヒーロー圧縮（追従 CTA の下に端末画像を収める）を
+       打ち消さないようにする。 */
+    padding-bottom: 10px;
+  }
+
+  /* タップ標的 44px（PBI-95）。ヘッダナビ・ジャンルナビ・目次チップは同じ
+     ピル部品（styles.css 上部の共通ルール参照）なのでまとめて直す。 */
+  .site-nav a,
+  .genre-nav a,
+  .toc-nav a {
+    min-height: 44px;
   }
 
   .site-nav a {
-    min-height: 32px;
     padding: 4px 12px;
     font-size: 0.82rem;
+  }
+
+  /* フッタリンク。従来は行の高さ（約 24px）任せで、下限の無い <a> だった。 */
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 4px 2px;
+  }
+
+  .back-link {
+    min-height: 44px;
   }
 
   .page-title-with-art,

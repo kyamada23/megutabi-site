@@ -19,6 +19,23 @@
   <!-- iOS Safari の Smart App Banner。インストール済みなら「開く」に変わる。 -->
   <meta name="apple-itunes-app" content="app-id=6800500048, app-argument=https://kyamada23.github.io/megutabi-site/">
   <link rel="icon" href="./assets/favicon-32.png">
+  <!-- OS_CLASS_START -->
+  <script>
+  (function () {
+    "use strict";
+    var ua = navigator.userAgent || "";
+    var isIOS = /iPad|iPhone|iPod/.test(ua)
+      || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/.test(ua);
+    var root = document.documentElement;
+    if (isIOS) {
+      root.classList.add("is-ios");
+    } else if (isAndroid) {
+      root.classList.add("is-android");
+    }
+  })();
+  </script>
+  <!-- OS_CLASS_END -->
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./analytics.js"></script>
   <script type="application/ld+json">
@@ -81,19 +98,19 @@
           <p class="hero-reassure">すべて無料・登録不要。iOS / Android 対応。</p>
           <div class="store-badges" id="store-badges">
             <div class="store-badge-row">
-              <a class="store-badge-link" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">
+              <a class="store-badge-link is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">
                 <img class="store-badge-img" src="./assets/app-store-badge.svg" width="152" height="56" alt="Download on the App Store">
               </a>
-              <a class="store-badge-link" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">
+              <a class="store-badge-link is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">
                 <img class="store-badge-img" src="./assets/google-play-badge.png" width="145" height="56" alt="Google Play で手に入れよう">
               </a>
             </div>
             <div class="qr-row">
-              <div class="qr-block">
+              <div class="qr-block is-store-ios">
                 <img src="./assets/qr-app-store.svg" width="96" height="96" loading="lazy" alt="App Store ダウンロード QRコード">
                 <span class="qr-label">App Store</span>
               </div>
-              <div class="qr-block">
+              <div class="qr-block is-store-android">
                 <img src="./assets/qr-google-play.svg" width="96" height="96" loading="lazy" alt="Google Play ダウンロード QRコード">
                 <span class="qr-label">Google Play</span>
               </div>
@@ -214,16 +231,76 @@
         <p>
           城、温泉、神社仏閣、世界遺産から、食や文化体験まで。8つのジャンルにまたがる全73テーマを収録しています。
         </p>
-        <ul>
-          <li><strong>景色</strong>：<a href="./themes/nihon-sankei.html">日本三景</a>／<a href="./themes/shin-nihon-sankei.html">新日本三景</a>／日本三大夜景／日本三大名瀑</li>
-          <li><strong>城</strong>：<a href="./themes/genzon-12-tenshu.html">現存12天守</a>／国宝五城／天空の城</li>
-          <li><strong>温泉</strong>：<a href="./themes/nihon-sanmeisen.html">日本三名泉</a>／日本三古湯／三大秘湯</li>
-          <li><strong>神社仏閣</strong>：<a href="./themes/kumano-sanzan.html">熊野三山</a>／出羽三山／大仏めぐり</li>
-          <li><strong>世界遺産</strong>：世界文化遺産／世界自然遺産／古都京都の文化財</li>
-          <li><strong>食</strong>：日本三大そば／本場で味わう五大うどん／日本三大酒どころ</li>
-          <li><strong>文化体験</strong>：日本六古窯／日本三大茅葺き集落／がっかり名所めぐり</li>
-          <li><strong>史跡・文化財</strong>：<a href="./themes/nihon-sanmeien.html">日本三名園</a>／日本三名橋／日本三大史跡</li>
-        </ul>
+        <!-- LP_THEME_CHIPS_START -->
+        <div class="theme-chip-groups">
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">城</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/genzon-12-tenshu.html">現存12天守</a></li>
+                <li><a class="theme-chip" href="./themes/kokuho-gojo.html">国宝五城</a></li>
+                <li><a class="theme-chip" href="./themes/tenku-no-shiro.html">天空の城</a></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">温泉</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/nihon-sanmeisen.html">日本三名泉</a></li>
+                <li><a class="theme-chip" href="./themes/nihon-sankoto.html">日本三古湯</a></li>
+                <li><span class="theme-chip theme-chip--plain">三大秘湯</span></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">景色</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/nihon-sankei.html">日本三景</a></li>
+                <li><a class="theme-chip" href="./themes/shin-nihon-sankei.html">新日本三景</a></li>
+                <li><a class="theme-chip" href="./themes/nihon-sandai-yakei.html">日本三大夜景</a></li>
+                <li><a class="theme-chip" href="./themes/nihon-sandai-meibaku.html">日本三大名瀑</a></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">世界遺産</span>
+            <ul class="theme-chip-list">
+                <li><span class="theme-chip theme-chip--plain">世界文化遺産</span></li>
+                <li><span class="theme-chip theme-chip--plain">世界自然遺産</span></li>
+                <li><span class="theme-chip theme-chip--plain">古都京都の文化財</span></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">神社仏閣</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/kumano-sanzan.html">熊野三山</a></li>
+                <li><span class="theme-chip theme-chip--plain">出羽三山</span></li>
+                <li><span class="theme-chip theme-chip--plain">大仏めぐり</span></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">食・グルメ</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/nihon-sandai-soba.html">日本三大そば</a></li>
+                <li><span class="theme-chip theme-chip--plain">本場で味わう五大うどん</span></li>
+                <li><a class="theme-chip" href="./themes/nihon-sandai-sakedokoro.html">日本三大酒どころ</a></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">文化体験</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/nihon-rokkoyo.html">日本六古窯</a></li>
+                <li><a class="theme-chip" href="./themes/nihon-sandai-kayabuki-shuraku.html">日本三大茅葺き集落</a></li>
+                <li><span class="theme-chip theme-chip--plain">がっかり名所めぐり</span></li>
+            </ul>
+          </div>
+          <div class="theme-chip-group">
+            <span class="theme-chip-group-label">史跡・文化財</span>
+            <ul class="theme-chip-list">
+                <li><a class="theme-chip" href="./themes/nihon-sanmeien.html">日本三名園</a></li>
+                <li><a class="theme-chip" href="./themes/nihon-sanmeibashi.html">日本三名橋</a></li>
+                <li><span class="theme-chip theme-chip--plain">日本三大史跡</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="theme-chip-legend">枠のあるテーマは、記事で一覧と巡り方を紹介しています。</p>
+        <!-- LP_THEME_CHIPS_END -->
         <p class="section-link">
           <a href="./themes/">テーマ別ガイドを見る</a>
           <span>現存12天守ほか、テーマごとの一覧と巡り方を紹介しています。</span>
@@ -232,16 +309,12 @@
 
       <section class="cta-panel" id="get-app" aria-labelledby="cta-bottom">
         <h2 id="cta-bottom">行ったことのある名所を、選ぶところから。</h2>
-        <p>すべての機能を無料で使えます。アカウント登録・ログインは不要です。まずは行ったことのある名所を選んで、いくつのテーマが埋まっているか確かめてみてください。</p>
-        <div class="store-badges">
-          <div class="store-badge-row">
-            <a class="store-badge-link" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">
-              <img class="store-badge-img" src="./assets/app-store-badge.svg" width="152" height="56" loading="lazy" alt="Download on the App Store">
-            </a>
-            <a class="store-badge-link" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">
-              <img class="store-badge-img" src="./assets/google-play-badge.png" width="145" height="56" loading="lazy" alt="Google Play で手に入れよう">
-            </a>
-          </div>
+        <p>すべての機能を無料で使えます。登録も入力も不要です。行ったことのある名所をタップするところから、いくつのテーマが埋まっているか分かります。</p>
+        <div class="cta-actions">
+          <!-- LP_BOTTOM_CTA_LINKS_START -->
+          <a class="store-btn is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+          <a class="store-btn is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+          <!-- LP_BOTTOM_CTA_LINKS_END -->
         </div>
       </section>
     </main>
@@ -256,10 +329,12 @@
     </footer>
   </div>
 
+  <!-- STICKY_CTA_START -->
   <nav class="sticky-cta" aria-label="アプリを入手">
     <span class="sticky-cta-label">無料<br>登録不要</span>
-    <a class="is-primary" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
-    <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+    <a class="store-btn is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+    <a class="store-btn is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
   </nav>
+  <!-- STICKY_CTA_END -->
 </body>
 </html>

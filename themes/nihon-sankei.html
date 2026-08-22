@@ -18,6 +18,21 @@
   <!-- iOS Safari の Smart App Banner。インストール済みなら「開く」に変わる。 -->
   <meta name="apple-itunes-app" content="app-id=6800500048, app-argument=https://kyamada23.github.io/megutabi-site/themes/nihon-sankei.html">
   <link rel="icon" href="../assets/favicon-32.png">
+  <script>
+  (function () {
+    "use strict";
+    var ua = navigator.userAgent || "";
+    var isIOS = /iPad|iPhone|iPod/.test(ua)
+      || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/.test(ua);
+    var root = document.documentElement;
+    if (isIOS) {
+      root.classList.add("is-ios");
+    } else if (isAndroid) {
+      root.classList.add("is-android");
+    }
+  })();
+  </script>
   <link rel="stylesheet" href="../styles.css">
   <script defer src="../analytics.js"></script>
   <script type="application/ld+json">
@@ -162,10 +177,10 @@
           <figcaption>行ったことのある名所を選んでいくと、すでに踏破しているテーマが見つかります。<strong>日本三景</strong>をはじめ73のテーマを収録。</figcaption>
         </figure>
         <div class="cta-inline" id="get-app">
-          <span class="cta-inline-text"><strong>訪れた景勝地を記録</strong>して、日本三景の踏破を目指せます。無料・登録不要。</span>
+          <span class="cta-inline-text">行ったことのある<strong>景勝地をタップする</strong>ところから。登録も入力も不要で、日本三景をいくつめぐったか分かります。</span>
           <span class="cta-inline-links">
-            <a href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
-            <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+            <a class="store-btn is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+            <a class="store-btn is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
           </span>
         </div>
       </section>
@@ -203,10 +218,10 @@
       <section class="cta-panel cta-panel--art" aria-labelledby="cta">
         <div>
           <h2 id="cta">日本三景を、アプリで集める。</h2>
-          <p>めぐたびは、旅に「行く理由」を与えるテーマ別に全国のスポットを発見・記録・収集する無料アプリ。日本三景をはじめ73のテーマを収録。訪れた景勝地を記録して、踏破を目指せる。</p>
+          <p>めぐたびは、旅に「行く理由」を与えるテーマ別に全国のスポットを発見・記録・収集する無料アプリ。日本三景をはじめ73のテーマを収録。行ったことのある景勝地をタップするところから。登録も入力も不要で、いくつ踏破しているか分かります。</p>
           <div class="cta-actions">
-            <a class="cta-store" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Android: Google Play で入手</a>
-            <a class="cta-store" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">iOS: App Store で入手</a>
+            <a class="store-btn is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+            <a class="store-btn is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
           </div>
         </div>
         <img src="../assets/megunosuke.png" width="96" height="96" alt="めぐたびのマスコット「めぐのすけ」">
@@ -227,8 +242,8 @@
 
   <nav class="sticky-cta" aria-label="アプリを入手">
     <span class="sticky-cta-label">無料<br>登録不要</span>
-    <a class="is-primary" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
-    <a href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+    <a class="store-btn is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+    <a class="store-btn is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
   </nav>
 </body>
 </html>
