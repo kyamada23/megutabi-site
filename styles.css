@@ -619,6 +619,44 @@ h1 {
   color: var(--paper);
 }
 
+/* 画像＋文章を横に並べるカード共通の骨格（列幅・順序は用途ごとに個別指定）。
+   .cta-panel--art / .page-title-with-art / .app-peek で共有する。 */
+.cta-panel--art,
+.page-title-with-art,
+.app-peek {
+  display: grid;
+  align-items: center;
+}
+
+/* PBI-98: 記事にアプリの姿を見せる図版。一覧表と記事内 CTA の間に置く。
+   .phone は共通フレームだが、既定の強い影（ヒーロー・カルーセル向け）は
+   本文中では重いので、ここだけ弱い影に差し替える。 */
+.app-peek {
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 20px;
+  margin: 22px 0 0;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  padding: 18px 20px;
+  background: rgba(251, 248, 241, 0.7);
+}
+
+.app-peek .phone {
+  width: 200px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.22) inset, 0 10px 20px rgba(20, 26, 38, 0.16);
+}
+
+.app-peek figcaption {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.app-peek figcaption strong {
+  color: var(--ink);
+}
+
 /* LP 下部の入手パネル。ストアバッジをそのまま置く。 */
 .cta-panel .store-badges {
   margin-top: 20px;
@@ -801,9 +839,7 @@ h1 {
 }
 
 .cta-panel--art {
-  display: grid;
   grid-template-columns: minmax(0, 1fr) 96px;
-  align-items: center;
   gap: 20px;
 }
 
@@ -906,9 +942,7 @@ h1 {
 }
 
 .page-title-with-art {
-  display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
   gap: 24px;
 }
 
@@ -1102,8 +1136,13 @@ h1 {
     font-size: 0.82rem;
   }
 
-  .page-title-with-art {
+  .page-title-with-art,
+  .cta-panel--art,
+  .app-peek {
     grid-template-columns: 1fr;
+  }
+
+  .page-title-with-art {
     gap: 12px;
   }
 
@@ -1111,17 +1150,22 @@ h1 {
     width: 88px;
   }
 
-  .cta-panel--art {
-    grid-template-columns: 1fr;
-  }
-
   .cta-panel--art img {
     justify-self: start;
     width: 72px;
   }
 
+  .app-peek {
+    justify-items: center;
+  }
+
+  .app-peek .phone {
+    width: min(52vw, 190px);
+  }
+
   .hero {
     grid-template-columns: 1fr;
+    gap: 0;
     min-height: 0;
     padding-top: 10px;
   }
@@ -1134,58 +1178,102 @@ h1 {
     white-space: normal;
   }
 
+  /* PBI-98: 追従 CTA の下に隠れずアプリ画面を収めるための縦方向の圧縮。
+     装飾英語見出しは省き、リード・無料登録不要・端末画像の間の余白を詰める。 */
+  .hero .eyebrow {
+    display: none;
+  }
+
   .hero-lead {
+    margin-top: 12px;
     font-size: 0.96rem;
   }
 
-  .stamp {
-    top: 16px;
-    right: 16px;
-    width: 68px;
-    height: 68px;
+  .hero-reassure {
+    margin-top: 14px;
   }
 
-  /* 1 カラムになるとパネルが画面幅いっぱいまで広がる。端末画像は幅の % で
-     サイズが決まるのに対しパネルの高さは固定だったため、幅の広い端末
-     （タブレット幅・横向き）ほど端末画像が縦に伸びてキャプションを覆い、
-     「めぐりたい場所が、旅になる。」が読めなくなっていた。パネル自体の幅を
-     上限つきで抑え、端末画像との比率を一定に保つ。 */
-  .hero-visual {
-    max-width: 420px;
-    min-height: 420px;
+  /* PBI-98: モバイルでは「文字 → バッジ → 端末」の順だと、読める大きさの
+     アプリ画面が 0.91 画面目まで出てこない。.hero-copy を解体して .hero
+     直下に子を昇格させ、ストアバッジだけ端末画像より後ろへ回す
+     （文字 → 端末 → バッジ）。追従 CTA が画面 0 から常時ストアへ届くので、
+     バッジが下がっても入手導線は失われない。 */
+  .hero-copy {
+    display: contents;
+  }
+
+  .hero .store-badges {
+    order: 2;
     margin-top: 24px;
-    margin-right: auto;
-    margin-left: auto;
+  }
+
+  /* PBI-98: 藍地の装飾パネル（青海波・印章・キャッチコピー）と背面の
+     端末を畳み、縦のスペースを前面の端末 1 枚（ホーム画面）に使い切る。
+     22〜27% でしか描画されず文字が読めなかった状態から、原寸の 4 割前後
+     まで拡大する。 */
+  .hero-scene,
+  .stamp,
+  .visual-caption,
+  .hero-visual .phone--back {
+    display: none;
+  }
+
+  .hero-visual {
+    max-width: none;
+    min-height: 0;
+    margin: 16px 0 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-visual .phone--front {
-    left: 9%;
-    width: 44%;
-  }
-
-  .hero-visual .phone--back {
-    right: 5%;
-    width: 34%;
+    position: static;
+    left: auto;
+    bottom: auto;
+    width: min(58vw, 220px);
+    transform: none;
   }
 
   .feature-list {
     grid-template-columns: 1fr;
   }
 
-  .visual-caption {
-    top: 18px;
-    left: 18px;
-    max-width: calc(100% - 110px);
+  /* PBI-98: スクリーンショットのカルーセルを特徴リストより上に持ち上げ、
+     ヒーローの端末 1 枚と地続きでアプリの画面を読めるようにする。
+     デスクトップは並び順を変えない。.lp は現状 site/index.html 専用で、
+     ここに並ぶ 5 セクションの order は index.html の構成にあわせた固定値。
+     他ページで .lp を再利用する場合、そのページのセクション class が
+     ここに無ければ order:0（既定）扱いで先頭に来てしまうため、
+     この order 一覧を先に見直すこと。新しいセクションを .lp main に足す
+     ときも同様に order の指定漏れに注意する。 */
+  .lp {
+    display: flex;
+    flex-direction: column;
   }
 
-  .visual-caption strong {
-    font-size: 1.05rem;
+  .lp .hero {
+    order: 1;
   }
 
-  .visual-caption span {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    white-space: nowrap;
+  .lp .screens {
+    order: 2;
+  }
+
+  .lp .features {
+    order: 3;
+  }
+
+  .lp .content-section {
+    order: 4;
+  }
+
+  .lp .cta-panel {
+    order: 5;
   }
 
   /* 縦長の端末画面は 1 列に積むと縦に伸びすぎるため、横スクロールで見せる。 */
