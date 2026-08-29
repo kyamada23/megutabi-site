@@ -51,6 +51,7 @@
   <!-- OS_CLASS_END -->
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./analytics.js"></script>
+  <script defer src="./checklist.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -147,6 +148,25 @@
           </p>
         </div>
       </section>
+
+      <!-- LP_QUIZ_START -->
+      <section class="lp-quiz-section" aria-labelledby="lp-quiz-title">
+        <noscript>
+          <p>行ったことのある名所をタップすると、いくつのテーマに記録がつくか分かります。JavaScript を有効にしてお試しください。</p>
+        </noscript>
+        <div id="lp-quiz" class="lp-quiz" hidden>
+          <h2 id="lp-quiz-title">行ったことのある場所は、どれですか？</h2>
+          <p class="lp-quiz-sub">タップするだけです。送信も登録もありません。</p>
+          <div class="lp-quiz-grid" id="lp-quiz-grid"></div>
+          <p class="lp-quiz-result status-line" id="lp-quiz-result" role="status" aria-live="polite"></p>
+          <div class="cta-actions">
+            <a class="store-btn is-store-ios" href="https://apps.apple.com/jp/app/apple-store/id6800500048?pt=129296110&amp;ct=site&amp;mt=8" target="_blank" rel="noopener">App Store</a>
+            <a class="store-btn is-store-android" href="https://play.google.com/store/apps/details?id=app.megutabi&amp;referrer=utm_source%3Dsite%26utm_medium%3Dreferral%26utm_campaign%3Dofficial" target="_blank" rel="noopener">Google Play</a>
+          </div>
+          <script type="application/json" id="lp-quiz-data">[{"name": "松島", "pref": "宮城県", "theme": "日本三景", "total": 3}, {"name": "兼六園", "pref": "石川県", "theme": "日本三名園", "total": 3}, {"name": "有馬温泉", "pref": "兵庫県", "theme": "日本三名泉", "total": 3}, {"name": "天橋立", "pref": "京都府", "theme": "日本三景", "total": 3}, {"name": "後楽園", "pref": "岡山県", "theme": "日本三名園", "total": 3}, {"name": "下呂温泉", "pref": "岐阜県", "theme": "日本三名泉", "total": 3}, {"name": "宮島（厳島神社）", "pref": "広島県", "theme": "日本三景", "total": 3}, {"name": "偕楽園", "pref": "茨城県", "theme": "日本三名園", "total": 3}, {"name": "草津温泉", "pref": "群馬県", "theme": "日本三名泉", "total": 3}]</script>
+        </div>
+      </section>
+      <!-- LP_QUIZ_END -->
 
       <section class="features" aria-label="アプリの特徴">
         <ul class="feature-list">

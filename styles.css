@@ -700,6 +700,38 @@ a.theme-chip:hover {
 
 /* ボタン本体は .store-btn（PBI-95: 6 か所すべて共通の体裁）。 */
 
+/* 「行った」選択のチェックボックス（PBI-94）。記事の表行・LP のパネルが
+   共有する。カスタム描画にせず実物の <input type="checkbox"> にすることで、
+   キーボード操作・スクリーンリーダーの状態通知をブラウザ標準に任せる。
+   タップ領域は行／パネル全体（.is-checkable / .lp-quiz-panel 側）にする。 */
+.spot-check {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px 0 0;
+  flex: none;
+  accent-color: var(--vermilion);
+  vertical-align: -5px;
+  cursor: pointer;
+}
+
+/* ナッジ体験（PBI-94）の状態読み上げ 1 行。記事の進捗（.check-progress）と
+   LP 診断の結果（.lp-quiz-result）が共有する。別枠のパネルにはしない
+   （要素数を増やさないため）。margin だけ用途別に個別指定する。 */
+.status-line {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  min-height: 1.6em;
+}
+
+.check-progress {
+  margin: 12px 0 0;
+}
+
+.check-progress strong {
+  color: var(--vermilion-deep);
+}
+
 /* 画像＋文章を横に並べるカード共通の骨格（列幅・順序は用途ごとに個別指定）。
    .cta-panel--art / .page-title-with-art / .app-peek で共有する。 */
 .cta-panel--art,
@@ -736,6 +768,79 @@ a.theme-chip:hover {
 
 .app-peek figcaption strong {
   color: var(--ink);
+}
+
+/* LP ミニ診断（PBI-94）。1 スクロール目、ヒーローと features の間に置く
+   （PBI-98 の土地配分決定: 初画面はアプリの姿=ヒーロー端末モックが優先）。
+   #lp-quiz は checklist.js の initLpQuiz が初期化に成功したときだけ
+   hidden を外す。JS 無効時は隣の <noscript> の案内文だけが残る。 */
+.lp-quiz-section {
+  padding: 28px 0 4px;
+}
+
+.lp-quiz-section noscript p {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.lp-quiz h2 {
+  margin: 0 0 4px;
+}
+
+.lp-quiz-sub {
+  margin: 0 0 14px;
+  color: var(--ink-faint);
+  font-size: 0.84rem;
+}
+
+.lp-quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+/* <label> がチェックボックスを内包するため、パネル全体が自然にタップ領域に
+   なる（記事の表行のように click 委譲を自前で書く必要がない）。 */
+.lp-quiz-panel {
+  display: flex;
+  align-items: flex-start;
+  min-height: 52px;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(251, 248, 241, 0.6);
+  cursor: pointer;
+}
+
+.lp-quiz-panel.is-checked {
+  border-color: rgba(185, 74, 59, 0.4);
+  background: rgba(185, 74, 59, 0.08);
+}
+
+.lp-quiz-panel-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.lp-quiz-panel-name {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.lp-quiz-panel.is-checked .lp-quiz-panel-name {
+  color: var(--vermilion-deep);
+}
+
+.lp-quiz-panel-pref {
+  margin-top: 2px;
+  color: var(--ink-faint);
+  font-size: 0.76rem;
+}
+
+.lp-quiz-result {
+  margin: 14px 0 0;
 }
 
 /* モバイル追従 CTA。760px 以下でのみ表示する（下の media query）。 */
@@ -888,6 +993,18 @@ a.theme-chip:hover {
 .theme-table td:nth-child(2) {
   color: var(--ink-mute);
   white-space: nowrap;
+}
+
+/* 一覧表の行チェック（PBI-94）。checklist.js が行頭に <input type="checkbox">
+   を挿入し、行全体をタップ領域にする。列は増やさない（既存の td:first-child /
+   td:nth-child(2) / td:last-child は列位置に依存しており、新設すると全指定が
+   1 つずれるため）。 */
+.theme-table tbody tr.is-checkable {
+  cursor: pointer;
+}
+
+.theme-table tbody tr.is-visited td:first-child {
+  color: var(--vermilion-deep);
 }
 
 .theme-table td:last-child {
@@ -1397,20 +1514,28 @@ html.is-android .is-store-android {
     order: 1;
   }
 
-  .lp .screens {
+  /* PBI-94: LP ミニ診断はヒーローの直後・1 スクロール目に置く設計
+     （site/index.html の DOM 順もヒーロー直後）。order を指定し忘れると
+     order:0（既定）扱いでヒーローより前に出てしまうため、上のコメントの
+     警告どおりここに明示する。 */
+  .lp .lp-quiz-section {
     order: 2;
   }
 
-  .lp .features {
+  .lp .screens {
     order: 3;
   }
 
-  .lp .content-section {
+  .lp .features {
     order: 4;
   }
 
-  .lp .cta-panel {
+  .lp .content-section {
     order: 5;
+  }
+
+  .lp .cta-panel {
+    order: 6;
   }
 
   /* 縦長の端末画面は 1 列に積むと縦に伸びすぎるため、横スクロールで見せる。 */
@@ -1513,5 +1638,11 @@ html.is-android .is-store-android {
 
   .theme-table td:last-child {
     min-width: 0;
+  }
+
+  /* LP ミニ診断（PBI-94）。3 列だと 320px 幅でパネルが窮屈になるため 2 列に
+     落とす（縦に伸びる分は許容し、横スクロールを出さないことを優先）。 */
+  .lp-quiz-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
