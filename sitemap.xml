@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/themes/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/themes/genzon-12-tenshu.html</loc>
@@ -83,6 +83,10 @@
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/themes/dewa-sanzan.html</loc>
     <lastmod>2026-08-30</lastmod>
+  </url>
+  <url>
+    <loc>https://kyamada23.github.io/megutabi-site/themes/daibutsu-meguri.html</loc>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://kyamada23.github.io/megutabi-site/privacy.html</loc>
